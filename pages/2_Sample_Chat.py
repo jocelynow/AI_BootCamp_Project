@@ -10,7 +10,7 @@ st.title("🗣️ Sample Chat")
 
 st.markdown("---")  # This adds a line under the title
 
-image_path = "images/chat_samples1.png"
+image_path = "chat_samples1.png"
 
 def img_to_base64(path):
     with open(path, "rb") as f:
@@ -44,4 +44,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
