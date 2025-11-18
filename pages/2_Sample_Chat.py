@@ -1,33 +1,32 @@
+import os
 import streamlit as st
-import base64
-
 
 # --- Wide layout ---
 st.set_page_config(layout="wide")
 
-
 st.title("🗣️ Sample Chat")
+st.markdown("---")  # Line under title
 
-st.markdown("---")  # This adds a line under the title
+# Path to image relative to the script
+script_dir = os.path.dirname(__file__)
+image_path = os.path.join(script_dir, "..", "chat_samples1.png")  # up one level to root
 
-image_path = "chat_samples1.png"
+# Convert the path to a URL that the browser can access
+# Streamlit allows local paths for HTML <img src>, using "file://"
+image_url = f"file://{image_path}"
 
-def img_to_base64(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-img_base64 = img_to_base64(image_path)
-
-# --- Full browser width and height, no gray columns ---
+# Full browser width & height image
 st.markdown(f"""
 <div style="
     width: 100vw;
     height: 100vh;
-    overflow: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 ">
-    <img src="data:image/png;base64,{img_base64}" style="
+    <img src="{image_url}" style="
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: contain;
         display: block;
     ">
@@ -44,5 +43,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-
