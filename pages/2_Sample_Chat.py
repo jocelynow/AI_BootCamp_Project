@@ -1,19 +1,38 @@
 import streamlit as st
-import os
+import base64
 
+
+# --- Wide layout ---
 st.set_page_config(layout="wide")
 
+
 st.title("🗣️ Sample Chat")
-st.markdown("---")
 
-# Path to image in repo
-script_dir = os.path.dirname(__file__)
-image_path = os.path.join(script_dir, "..", "images", "chat_samples1.png")
+st.markdown("---")  # This adds a line under the title
 
-if os.path.exists(image_path):
-    st.image(image_path, use_column_width=True)
-else:
-    st.warning(f"Image not found at {image_path}")
+image_path = "chat_samples1.png"
+
+def img_to_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+img_base64 = img_to_base64(image_path)
+
+# --- Full browser width and height, no gray columns ---
+st.markdown(f"""
+<div style="
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+">
+    <img src="data:image/png;base64,{img_base64}" style="
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    ">
+</div>
+""", unsafe_allow_html=True)
 
 # ---------- FOOTER ----------
 st.markdown(
@@ -25,5 +44,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+
 
 
