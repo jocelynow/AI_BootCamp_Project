@@ -2,15 +2,12 @@ import streamlit as st
 import base64
 import os
 
-# --- Wide layout ---
 st.set_page_config(layout="wide")
-
 st.title("🗣️ Sample Chat")
-st.markdown("---")  # line under the title
+st.markdown("---")
 
-# --- Build absolute path relative to this script ---
-script_dir = os.path.dirname(__file__)  # folder of this script
-image_path = os.path.join(script_dir, "chat_samples1.png")  # file in the same folder
+# Correct path to image in images folder at repo root
+image_path = os.path.join("images", "chat_samples1.png")
 
 def img_to_base64(path):
     with open(path, "rb") as f:
@@ -18,7 +15,6 @@ def img_to_base64(path):
 
 img_base64 = img_to_base64(image_path)
 
-# --- Full browser width and height ---
 st.markdown(f"""
 <div style="
     width: 100vw;
@@ -34,6 +30,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+
 # ---------- FOOTER ----------
 st.markdown(
     """
@@ -44,3 +41,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
