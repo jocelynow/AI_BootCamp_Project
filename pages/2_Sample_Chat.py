@@ -1,37 +1,21 @@
-import os
 import streamlit as st
+import os
 
 # --- Wide layout ---
 st.set_page_config(layout="wide")
 
 st.title("🗣️ Sample Chat")
-st.markdown("---")  # Line under title
+st.markdown("---")
 
-# Path to image relative to the script
-script_dir = os.path.dirname(__file__)
-image_path = os.path.join(script_dir, "..", "chat_samples1.png")  # up one level to root
+# --- Get image path relative to this script ---
+script_dir = os.path.dirname(__file__)  # folder where this script is
+image_path = os.path.join(script_dir, "..", "chat_samples1.png")  # move up to root
 
-# Convert the path to a URL that the browser can access
-# Streamlit allows local paths for HTML <img src>, using "file://"
-image_url = f"file://{image_path}"
-
-# Full browser width & height image
-st.markdown(f"""
-<div style="
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-">
-    <img src="{image_url}" style="
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-    ">
-</div>
-""", unsafe_allow_html=True)
+# --- Display the image ---
+if os.path.exists(image_path):
+    st.image(image_path, use_column_width=True)
+else:
+    st.warning(f"Image not found at {image_path}")
 
 # ---------- FOOTER ----------
 st.markdown(
@@ -43,3 +27,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
