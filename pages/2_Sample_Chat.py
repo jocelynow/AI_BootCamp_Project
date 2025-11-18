@@ -1,17 +1,15 @@
 import streamlit as st
 import os
 
-# --- Wide layout ---
 st.set_page_config(layout="wide")
 
 st.title("🗣️ Sample Chat")
 st.markdown("---")
 
-# --- Get image path relative to this script ---
-script_dir = os.path.dirname(__file__)  # folder where this script is
-image_path = os.path.join(script_dir, "..", "chat_samples1.png")  # move up to root
+# Path to image in repo
+script_dir = os.path.dirname(__file__)
+image_path = os.path.join(script_dir, "..", "images", "chat_samples1.png")
 
-# --- Display the image ---
 if os.path.exists(image_path):
     st.image(image_path, use_column_width=True)
 else:
@@ -27,4 +25,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
